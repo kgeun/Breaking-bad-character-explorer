@@ -1,3 +1,32 @@
 <resources>
-    <string name="app_name">Breaking Bad Character Explorer</string>
+    <!-- Application Name -->
+    <string name="app_name">Dogs Gallery</string>
+    <string name="app_name_dev">Dogs Gallery(Dev)</string>
+    <string name="server_success">success</string>
+    <string name="internal_server_error">Internal server error</string>
+    <string name="communication_error">Server communication error</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="total_breeds">Total Breeds:</string>
+    <string name="refresh_items">Refresh Items</string>
+
+    <!-- Color List -->
+    <string-array name="colors" translatable="false">
+        <item>#99cc00</item>
+        <item>#33b5e5</item>
+        <item>#0099cc</item>
+        <item>#547bca</item>
+        <item>#aa66cc</item>
+        <item>#9933cc</item>
+        <item>#669900</item>
+        <item>#aeb857</item>
+        <item>#cc0000</item>
+        <item>#df5948</item>
+        <item>#ff4444</item>
+        <item>#ae6b23</item>
+        <item>#ff8800</item>
+        <item>#e5ae4f</item>
+        <item>#ffbb33</item>
+        <item>#cccccc</item>
+        <item>#888888</item>
+    </string-array>
 </resources>
