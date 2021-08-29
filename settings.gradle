@@ -1,0 +1,2 @@
+rootProject.name = "Breaking Bad Character Explorer"
+include ':app'
