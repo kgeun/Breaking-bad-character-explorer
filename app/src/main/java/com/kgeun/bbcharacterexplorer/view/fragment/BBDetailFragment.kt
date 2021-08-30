@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 import com.kgeun.bbcharacterexplorer.R
 import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
-import com.kgeun.bbcharacterexplorer.databinding.FragmentGalleryBinding
+import com.kgeun.bbcharacterexplorer.databinding.FragmentDetailBinding
 import com.kgeun.bbcharacterexplorer.utils.CDGUtils
 import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
 import com.kgeun.bbcharacterexplorer.view.adapter.CDGGalleryAdapter
@@ -23,8 +23,8 @@ import com.kgeun.bbcharacterexplorer.viewmodel.CDGMainViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CDGGalleryFragment : CDGBaseFragment() {
-    private lateinit var binding: FragmentGalleryBinding
+class BBDetailFragment : CDGBaseFragment() {
+    private lateinit var binding: FragmentDetailBinding
     val mainViewModel: CDGMainViewModel by viewModels()
     @Inject
     lateinit var mainDao: BBMainDao
@@ -36,7 +36,7 @@ class CDGGalleryFragment : CDGBaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
 
         setListener()
         subscribeUi()
@@ -45,33 +45,33 @@ class CDGGalleryFragment : CDGBaseFragment() {
     }
 
     private fun subscribeUi() {
-        mainViewModel.getImageList(breedName).observe(viewLifecycleOwner) {
-            if (it.isNullOrEmpty()) {
-                try {
-                    mainViewModel.viewModelScope.launch {
-                        mainViewModel.loadImageList(
-                            breedName,
-                            CDGUtils.errorHandler(requireContext())
-                        )
-                    }
-                } catch (e: retrofit2.HttpException) {
-                    Toast.makeText(requireContext(),
-                        R.string.communication_error,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(),
-                        R.string.unknown_error,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-            binding.adapter = CDGGalleryAdapter(binding.root as ViewGroup, it)
-        }
+//        mainViewModel.getImageList(breedName).observe(viewLifecycleOwner) {
+//            if (it.isNullOrEmpty()) {
+//                try {
+//                    mainViewModel.viewModelScope.launch {
+//                        mainViewModel.loadImageList(
+//                            breedName,
+//                            CDGUtils.errorHandler(requireContext())
+//                        )
+//                    }
+//                } catch (e: retrofit2.HttpException) {
+//                    Toast.makeText(requireContext(),
+//                        R.string.communication_error,
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                } catch (e: Exception) {
+//                    Toast.makeText(requireContext(),
+//                        R.string.unknown_error,
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            }
+//            binding.adapter = CDGGalleryAdapter(binding.root as ViewGroup, it)
+//        }
     }
 
     private fun setListener() {
-        breedName = CDGBreedsFragmentArgs.fromBundle(requireArguments()).breedName
+//        breedName = CDGBreedsFragmentArgs.fromBundle(requireArguments()).breedName
 
         binding.breedsName = breedName
 
@@ -83,12 +83,12 @@ class CDGGalleryFragment : CDGBaseFragment() {
 
     fun refreshImageList() {
         try {
-            mainViewModel.viewModelScope.launch {
-                withContext(Dispatchers.IO) {
-                    mainDao.deleteImageList(breedName)
-                }
-                mainViewModel.loadImageList(breedName, CDGUtils.errorHandler(requireContext()))
-            }
+//            mainViewModel.viewModelScope.launch {
+//                withContext(Dispatchers.IO) {
+//                    mainDao.deleteImageList(breedName)
+//                }
+//                mainViewModel.loadImageList(breedName, CDGUtils.errorHandler(requireContext()))
+//            }
         } catch (e: retrofit2.HttpException) {
             e.printStackTrace()
         }

@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
-import com.kgeun.bbcharacterexplorer.databinding.FragmentBreedsBinding
+import com.kgeun.bbcharacterexplorer.databinding.FragmentCharacterListBinding
 import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
 import com.kgeun.bbcharacterexplorer.view.adapter.CDGCharacterAdapter
 import com.kgeun.bbcharacterexplorer.viewmodel.CDGMainViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CDGBreedsFragment : CDGBaseFragment() {
-    private lateinit var binding: FragmentBreedsBinding
+class BBCharacterListFragment : CDGBaseFragment() {
+    private lateinit var binding: FragmentCharacterListBinding
     val mainViewModel: CDGMainViewModel by viewModels()
     @Inject
     lateinit var mainDao: BBMainDao
@@ -26,22 +26,16 @@ class CDGBreedsFragment : CDGBaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentBreedsBinding.inflate(inflater, container, false)
+        binding = FragmentCharacterListBinding.inflate(inflater, container, false)
 
         subscribeUi()
         return binding.root
     }
 
     private fun subscribeUi() {
-        mainViewModel.breedsList.observe(viewLifecycleOwner) {
-            if (!it.isNullOrEmpty()) {
-                binding.adapter = CDGCharacterAdapter(binding.root as ViewGroup, it)
-            }
-        }
-
-        mainViewModel.totalCount.observe(viewLifecycleOwner) {
+        mainViewModel.charactersList.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.count = it
+                binding.adapter = CDGCharacterAdapter(binding.root as ViewGroup, it)
             }
         }
     }

@@ -9,7 +9,7 @@ import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 import com.kgeun.bbcharacterexplorer.data.model.ui.CDGImageItem
 import com.kgeun.bbcharacterexplorer.databinding.ListitemGalleryBinding
 import com.kgeun.bbcharacterexplorer.databinding.ListitemGalleryHeaderBinding
-import com.kgeun.bbcharacterexplorer.view.fragment.CDGGalleryFragment
+import com.kgeun.bbcharacterexplorer.view.fragment.BBDetailFragment
 
 class CDGGalleryAdapter(val parentView: ViewGroup, val imageList: List<CDGImageItem>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -71,7 +71,7 @@ class CDGGalleryAdapter(val parentView: ViewGroup, val imageList: List<CDGImageI
         fun bind() {
             binding.apply {
                 btnRefresh.setOnClickListener {
-                    (binding.root.findFragment<CDGGalleryFragment>()).refreshImageList()
+//                    (binding.root.findFragment<BBDetailFragment>()).refreshImageList()
                     CDGAnalytics.sendClick("ClickRefresh_${javaClass.simpleName}")
                 }
                 executePendingBindings()

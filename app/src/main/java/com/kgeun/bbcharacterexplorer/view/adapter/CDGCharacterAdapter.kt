@@ -7,29 +7,29 @@ import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.kgeun.bbcharacterexplorer.R
 import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
-import com.kgeun.bbcharacterexplorer.data.model.ui.BBCharacterListItem
-import com.kgeun.bbcharacterexplorer.databinding.ListitemBreedsBinding
-import com.kgeun.bbcharacterexplorer.view.fragment.CDGBreedsFragmentDirections
+import com.kgeun.bbcharacterexplorer.data.model.network.BBCharacter
+import com.kgeun.bbcharacterexplorer.databinding.ListitemCharacterBinding
+import com.kgeun.bbcharacterexplorer.view.fragment.BBCharacterListFragmentDirections
 
-class CDGCharacterAdapter(val parentView: ViewGroup, val breedsList: List<BBCharacterListItem>?) :
+class CDGCharacterAdapter(val parentView: ViewGroup, val characterList: List<BBCharacter>?) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return CharacterHolder(
-                ListitemBreedsBinding.inflate(
+                ListitemCharacterBinding.inflate(
                     LayoutInflater.from(parentView.context), parentView, false
                 )
             )
     }
 
-    override fun getItemCount(): Int = breedsList?.size ?: 0
+    override fun getItemCount(): Int = characterList?.size ?: 0
 
     inner class CharacterHolder(
-        private val binding: ListitemBreedsBinding
+        private val binding: ListitemCharacterBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: BBCharacterListItem) {
+        fun bind(item: BBCharacter) {
             binding.apply {
-                breedItem = item
+                character = item
                 cardView.isClickable = true
                 cardView.isFocusable = true
 
@@ -42,9 +42,9 @@ class CDGCharacterAdapter(val parentView: ViewGroup, val breedsList: List<BBChar
 
                     findNavController(root)
                         .navigate(
-                            CDGBreedsFragmentDirections.breedsToGallery(item.name!!), navBuilder.build()
+                            BBCharacterListFragmentDirections.listToDetail(item.char_id), navBuilder.build()
                         )
-                    CDGAnalytics.sendClick("BreedsItem_${item.name}_${javaClass.simpleName}")
+                    CDGAnalytics.sendClick("CharacterList_${item.name}_${javaClass.simpleName}")
                 }
                 executePendingBindings()
             }
@@ -53,10 +53,8 @@ class CDGCharacterAdapter(val parentView: ViewGroup, val breedsList: List<BBChar
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (position > 0) {
-            breedsList?.let {
-                (holder as CharacterHolder).bind(breedsList[position])
-            }
+        characterList?.let {
+            (holder as CharacterHolder).bind(characterList[position])
         }
     }
 }
