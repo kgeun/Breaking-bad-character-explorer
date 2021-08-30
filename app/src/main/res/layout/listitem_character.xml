@@ -18,9 +18,11 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="H,4:1"
-            app:rippleColor="@color/primary_teal_2"
+            android:layout_height="wrap_content"
+            android:paddingVertical="15dp"
+            app:contentPaddingTop="15dp"
+            app:contentPaddingBottom="15dp"
+            app:rippleColor="@color/white0.4"
             app:cardCornerRadius="10dp"
             android:elevation="0dp"
             app:cardElevation="0dp"
@@ -35,15 +37,15 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/characterName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="140dp"
                     android:layout_marginEnd="20dp"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     android:lineSpacingExtra="5sp"
                     android:textStyle="bold"
                     android:textColor="@color/white"
@@ -59,10 +61,10 @@
                     android:id="@+id/seasonTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="140dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="20dp"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     android:lineSpacingExtra="5sp"
                     android:textColor="@color/white0.5"
                     android:text="@string/season_appearance"
@@ -76,10 +78,10 @@
                     android:id="@+id/seasonAppear"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="140dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="20dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:lineSpacingExtra="5sp"
                     android:textColor="@color/primary_teal_2"
                     app:seasonList="@{character.appearance}"
@@ -105,9 +107,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/thumbnailWrapper"
-            android:layout_width="140dp"
+            android:layout_width="100dp"
             android:layout_height="0dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="22dp"
             android:layout_marginBottom="25dp"
             android:elevation="0dp"
             app:layout_constraintDimensionRatio="H,1:1.3"

@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white0.9"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="20dp"
             android:text="@string/Characters"
             android:textSize="21sp"
             android:textStyle="bold"
@@ -42,7 +42,7 @@
             app:layout_constraintTop_toBottomOf="@id/appTitle"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvBreedsList"
+            android:id="@+id/rvCharactersList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
