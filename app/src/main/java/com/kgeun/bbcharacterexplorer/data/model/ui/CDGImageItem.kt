@@ -1,4 +1,4 @@
-package to.chip.dogsgallery.data.model.ui
+package com.kgeun.bbcharacterexplorer.data.model.ui
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

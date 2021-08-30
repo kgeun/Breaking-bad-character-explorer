@@ -1,16 +1,15 @@
-package to.chip.dogsgallery.view.adapter
+package com.kgeun.bbcharacterexplorer.view.adapter
 
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.RecyclerView
-import to.chip.dogsgallery.analytics.CDGAnalytics
-import to.chip.dogsgallery.data.model.ui.CDGImageItem
-import to.chip.dogsgallery.databinding.ListitemGalleryBinding
-import to.chip.dogsgallery.databinding.ListitemGalleryHeaderBinding
-import to.chip.dogsgallery.view.fragment.CDGGalleryFragment
+import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
+import com.kgeun.bbcharacterexplorer.data.model.ui.CDGImageItem
+import com.kgeun.bbcharacterexplorer.databinding.ListitemGalleryBinding
+import com.kgeun.bbcharacterexplorer.databinding.ListitemGalleryHeaderBinding
+import com.kgeun.bbcharacterexplorer.view.fragment.CDGGalleryFragment
 
 class CDGGalleryAdapter(val parentView: ViewGroup, val imageList: List<CDGImageItem>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -1,4 +1,4 @@
-package to.chip.dogsgallery.view.fragment
+package com.kgeun.bbcharacterexplorer.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,14 +12,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import to.chip.dogsgallery.R
-import to.chip.dogsgallery.analytics.CDGAnalytics
-import to.chip.dogsgallery.data.persistance.CDGMainDao
-import to.chip.dogsgallery.databinding.FragmentGalleryBinding
-import to.chip.dogsgallery.utils.CDGUtils
-import to.chip.dogsgallery.view.CDGBaseFragment
-import to.chip.dogsgallery.view.adapter.CDGGalleryAdapter
-import to.chip.dogsgallery.viewmodel.CDGMainViewModel
+import com.kgeun.bbcharacterexplorer.R
+import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
+import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
+import com.kgeun.bbcharacterexplorer.databinding.FragmentGalleryBinding
+import com.kgeun.bbcharacterexplorer.utils.CDGUtils
+import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
+import com.kgeun.bbcharacterexplorer.view.adapter.CDGGalleryAdapter
+import com.kgeun.bbcharacterexplorer.viewmodel.CDGMainViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -27,7 +27,7 @@ class CDGGalleryFragment : CDGBaseFragment() {
     private lateinit var binding: FragmentGalleryBinding
     val mainViewModel: CDGMainViewModel by viewModels()
     @Inject
-    lateinit var mainDao: CDGMainDao
+    lateinit var mainDao: BBMainDao
     var breedName: String = ""
 
     override fun onCreateView(

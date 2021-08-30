@@ -1,4 +1,4 @@
-package to.chip.dogsgallery.utils
+package com.kgeun.bbcharacterexplorer.utils
 
 import android.content.Context
 import android.widget.Toast

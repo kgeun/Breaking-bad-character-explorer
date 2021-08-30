@@ -1,4 +1,4 @@
-package to.chip.dogsgallery.di
+package com.kgeun.bbcharacterexplorer.di
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import to.chip.dogsgallery.network.CDGDogsService
+import com.kgeun.bbcharacterexplorer.network.BBService
 import javax.inject.Singleton
 
 @Module
@@ -17,13 +17,13 @@ class CDGApiModule {
 
     @Singleton
     @Provides
-    fun provideRetrofitService(): CDGDogsService = Retrofit.Builder()
-        .baseUrl(CDGDogsService.DOGS_GALLERY_API_URL)
+    fun provideRetrofitService(): BBService = Retrofit.Builder()
+        .baseUrl(BBService.BREAKING_BAD_API_URL)
         .addConverterFactory(
             MoshiConverterFactory.create(
                 Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
             )
         )
         .build()
-        .create(CDGDogsService::class.java)
+        .create(BBService::class.java)
 }

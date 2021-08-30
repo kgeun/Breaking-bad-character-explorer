@@ -1,11 +1,11 @@
-package to.chip.dogsgallery.view
+package com.kgeun.bbcharacterexplorer.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import to.chip.dogsgallery.analytics.CDGAnalytics
+import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 
 open class CDGBaseFragment : Fragment() {
     override fun onCreateView(

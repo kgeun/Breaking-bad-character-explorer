@@ -1,21 +1,21 @@
-package to.chip.dogsgallery.view.adapter
+package com.kgeun.bbcharacterexplorer.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import to.chip.dogsgallery.R
-import to.chip.dogsgallery.analytics.CDGAnalytics
-import to.chip.dogsgallery.data.model.ui.CDGBreedItem
-import to.chip.dogsgallery.databinding.ListitemBreedsBinding
-import to.chip.dogsgallery.view.fragment.CDGBreedsFragmentDirections
+import com.kgeun.bbcharacterexplorer.R
+import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
+import com.kgeun.bbcharacterexplorer.data.model.ui.BBCharacterListItem
+import com.kgeun.bbcharacterexplorer.databinding.ListitemBreedsBinding
+import com.kgeun.bbcharacterexplorer.view.fragment.CDGBreedsFragmentDirections
 
-class CDGBreedsAdapter(val parentView: ViewGroup, val breedsList: List<CDGBreedItem>?) :
+class CDGCharacterAdapter(val parentView: ViewGroup, val breedsList: List<BBCharacterListItem>?) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return BreedsHolder(
+        return CharacterHolder(
                 ListitemBreedsBinding.inflate(
                     LayoutInflater.from(parentView.context), parentView, false
                 )
@@ -24,10 +24,10 @@ class CDGBreedsAdapter(val parentView: ViewGroup, val breedsList: List<CDGBreedI
 
     override fun getItemCount(): Int = breedsList?.size ?: 0
 
-    inner class BreedsHolder(
+    inner class CharacterHolder(
         private val binding: ListitemBreedsBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CDGBreedItem) {
+        fun bind(item: BBCharacterListItem) {
             binding.apply {
                 breedItem = item
                 cardView.isClickable = true
@@ -55,7 +55,7 @@ class CDGBreedsAdapter(val parentView: ViewGroup, val breedsList: List<CDGBreedI
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (position > 0) {
             breedsList?.let {
-                (holder as BreedsHolder).bind(breedsList[position])
+                (holder as CharacterHolder).bind(breedsList[position])
             }
         }
     }

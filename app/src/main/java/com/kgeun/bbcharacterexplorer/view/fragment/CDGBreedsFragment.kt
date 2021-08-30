@@ -1,4 +1,4 @@
-package to.chip.dogsgallery.view.fragment
+package com.kgeun.bbcharacterexplorer.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import to.chip.dogsgallery.data.persistance.CDGMainDao
-import to.chip.dogsgallery.databinding.FragmentBreedsBinding
-import to.chip.dogsgallery.view.CDGBaseFragment
-import to.chip.dogsgallery.view.adapter.CDGBreedsAdapter
-import to.chip.dogsgallery.viewmodel.CDGMainViewModel
+import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
+import com.kgeun.bbcharacterexplorer.databinding.FragmentBreedsBinding
+import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
+import com.kgeun.bbcharacterexplorer.view.adapter.CDGCharacterAdapter
+import com.kgeun.bbcharacterexplorer.viewmodel.CDGMainViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -18,7 +18,7 @@ class CDGBreedsFragment : CDGBaseFragment() {
     private lateinit var binding: FragmentBreedsBinding
     val mainViewModel: CDGMainViewModel by viewModels()
     @Inject
-    lateinit var mainDao: CDGMainDao
+    lateinit var mainDao: BBMainDao
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +35,7 @@ class CDGBreedsFragment : CDGBaseFragment() {
     private fun subscribeUi() {
         mainViewModel.breedsList.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty()) {
-                binding.adapter = CDGBreedsAdapter(binding.root as ViewGroup, it)
+                binding.adapter = CDGCharacterAdapter(binding.root as ViewGroup, it)
             }
         }
 

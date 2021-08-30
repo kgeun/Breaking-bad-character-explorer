@@ -1,4 +1,4 @@
-package to.chip.dogsgallery.binding
+package com.kgeun.bbcharacterexplorer.binding
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager

@@ -1,12 +1,12 @@
-package to.chip.dogsgallery.view
+package com.kgeun.bbcharacterexplorer.view
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.AndroidEntryPoint
-import to.chip.dogsgallery.analytics.CDGAnalytics
-import to.chip.dogsgallery.utils.CDGUtils
+import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
+import com.kgeun.bbcharacterexplorer.utils.CDGUtils
 
 @AndroidEntryPoint
 open class CDGBaseActivity : AppCompatActivity() {

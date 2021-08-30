@@ -1,4 +1,4 @@
-package to.chip.dogsgallery.di
+package com.kgeun.bbcharacterexplorer.di
 
 import android.content.Context
 import androidx.room.Room
@@ -9,8 +9,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import to.chip.dogsgallery.data.persistance.CDGAppDatabase
-import to.chip.dogsgallery.data.persistance.CDGMainDao
+import com.kgeun.bbcharacterexplorer.data.persistance.BBAppDatabase
+import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import javax.inject.Singleton
 
 @Module
@@ -18,14 +18,14 @@ import javax.inject.Singleton
 class CDGDatabaseModule {
     @Provides
     @Singleton
-    fun provideMainDao(appDatabase: CDGAppDatabase): CDGMainDao = appDatabase.CDGMainDao()
+    fun provideMainDao(appDatabase: BBAppDatabase): BBMainDao = appDatabase.BBMainDao()
 
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext appContext: Context): CDGAppDatabase {
+    fun provideAppDatabase(@ApplicationContext appContext: Context): BBAppDatabase {
         return Room.databaseBuilder(
             appContext,
-            CDGAppDatabase::class.java,
+            BBAppDatabase::class.java,
             "dogsgallery"
         ).build()
     }

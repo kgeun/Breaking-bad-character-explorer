@@ -1,18 +1,18 @@
-package to.chip.dogsgallery.analytics
+package com.kgeun.bbcharacterexplorer.analytics
 
 import android.os.Bundle
-import com.google.firebase.analytics.FirebaseAnalytics
-import to.chip.dogsgallery.CDGApplication
+//import com.google.firebase.analytics.FirebaseAnalytics
+//import to.chip.dogsgallery.CDGApplication
 
 object CDGAnalytics {
-    private val firebaseAnalytics: FirebaseAnalytics =
-        FirebaseAnalytics.getInstance(CDGApplication.instance.applicationContext)
+//    private val firebaseAnalytics: FirebaseAnalytics =
+//        FirebaseAnalytics.getInstance(CDGApplication.instance.applicationContext)
 
     fun sendView(categoryCode: String) {
         try {
             val bundle = Bundle()
             bundle.putString("CategoryCode", categoryCode)
-            firebaseAnalytics.logEvent("VIEW", bundle)
+//            firebaseAnalytics.logEvent("VIEW", bundle)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -22,7 +22,7 @@ object CDGAnalytics {
         try {
             val bundle = Bundle()
             bundle.putString("CategoryCode", categoryCode)
-            firebaseAnalytics.logEvent("CLICK", bundle)
+//            firebaseAnalytics.logEvent("CLICK", bundle)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -34,7 +34,7 @@ object CDGAnalytics {
             for (key in mapData.keys) {
                 bundle.putString(key, mapData[key])
             }
-            firebaseAnalytics.logEvent(tag, bundle)
+//            firebaseAnalytics.logEvent(tag, bundle)
         } catch (e: Exception) {
             e.printStackTrace()
         }
