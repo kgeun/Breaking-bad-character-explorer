@@ -18,9 +18,9 @@
     <!-- Chip Colorset -->
     <color name="primary_bright_violet">#f8f7fd</color>
     <color name="primary_bright_white">#fefefe</color>
-    <color name="primary_navy_1">#090653</color>
-    <color name="primary_navy_2">#080c5d</color>
-    <color name="primary_navy_3">#4e5170</color>
+    <color name="primary_dark_navy_1">#18203b</color>
+    <color name="primary_dark_navy_2">#0c132c</color>
+    <color name="primary_dark_navy_3">#1e2746</color>
 
 
     <!-- Translucent Achromatic Series -->

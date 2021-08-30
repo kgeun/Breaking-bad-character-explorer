@@ -1,16 +1,13 @@
-package to.chip.dogsgallery.binding
+package com.kgeun.bbcharacterexplorer.binding
 
 import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import to.chip.dogsgallery.R
-import to.chip.dogsgallery.analytics.CDGAnalytics
-import to.chip.dogsgallery.data.model.ui.CDGBreedItem
-import to.chip.dogsgallery.utils.CDGUtils
-import to.chip.dogsgallery.view.custom.CDGLetterImageView
+import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 
 
 object CDGViewBinding {
@@ -23,19 +20,6 @@ object CDGViewBinding {
     }
 
     @JvmStatic
-    @BindingAdapter("setItem")
-    fun setLetterImage(view: CDGLetterImageView, item: CDGBreedItem?) {
-        if (item == null) {
-            return
-        }
-
-        view.setLetter(item.name!![0].uppercaseChar())
-        view.setOval(false)
-        view.setTextColor(R.color.white)
-        view.setBackgroundColorNumber(item.thumbnailColor ?: CDGUtils.random17())
-    }
-
-    @JvmStatic
     @BindingAdapter("setThumbnailUrl")
     fun setThumbnailUrl(view: ImageView, url: String?) {
         if (url == null) {
@@ -45,6 +29,20 @@ object CDGViewBinding {
         Glide.with(view.context)
             .load(url)
             .into(view)
+    }
+
+    @JvmStatic
+    @BindingAdapter("seasonList")
+    fun setSeasonList(view: TextView, list: List<Int>?) {
+        if (list == null) {
+            return
+        }
+
+        val strBfr = StringBuffer()
+        list.forEach {
+            strBfr.append("$it ")
+        }
+        view.text = strBfr.toString()
     }
 
     @JvmStatic

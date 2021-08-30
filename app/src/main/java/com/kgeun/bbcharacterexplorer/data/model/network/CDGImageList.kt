@@ -1,4 +1,4 @@
-package to.chip.dogsgallery.data.model.network
+package com.kgeun.bbcharacterexplorer.data.model.network
 
 data class CDGImageList(
     var message: MutableList<String>,
