@@ -1,14 +1,14 @@
-package to.chip.dogsgallery.view.activity
+package com.kgeun.bbcharacterexplorer.view.activity
 
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
-import to.chip.dogsgallery.R
-import to.chip.dogsgallery.databinding.ActivityMainBinding
-import to.chip.dogsgallery.view.CDGBaseActivity
+import com.kgeun.bbcharacterexplorer.R
+import com.kgeun.bbcharacterexplorer.databinding.ActivityMainBinding
+import com.kgeun.bbcharacterexplorer.view.CDGBaseActivity
 
 
-class CDGMainActivity : CDGBaseActivity() {
+class BBMainActivity : CDGBaseActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
