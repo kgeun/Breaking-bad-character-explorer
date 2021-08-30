@@ -1,4 +1,4 @@
-package to.chip.dogsgallery.viewmodel
+package com.kgeun.bbcharacterexplorer.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,21 +8,21 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import to.chip.dogsgallery.CDGApplication
-import to.chip.dogsgallery.R
-import to.chip.dogsgallery.constants.CDGConstants
-import to.chip.dogsgallery.data.model.network.CDGBreed
-import to.chip.dogsgallery.data.model.ui.CDGBreedItem
-import to.chip.dogsgallery.data.model.ui.CDGImageItem
-import to.chip.dogsgallery.data.persistance.CDGMainDao
-import to.chip.dogsgallery.network.CDGDogsService
-import to.chip.dogsgallery.utils.CDGUtils
+import com.kgeun.bbcharacterexplorer.BBApplication
+import com.kgeun.bbcharacterexplorer.R
+import com.kgeun.bbcharacterexplorer.constants.CDGConstants
+import com.kgeun.bbcharacterexplorer.data.model.network.CDGBreed
+import com.kgeun.bbcharacterexplorer.data.model.ui.BBCharacterListItem
+import com.kgeun.bbcharacterexplorer.data.model.ui.CDGImageItem
+import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
+import com.kgeun.bbcharacterexplorer.network.BBService
+import com.kgeun.bbcharacterexplorer.utils.CDGUtils
 import javax.inject.Inject
 
 @HiltViewModel
 class CDGMainViewModel @Inject constructor(
-    private val mainDao: CDGMainDao,
-    private val dogsService: CDGDogsService
+    private val mainDao: BBMainDao,
+    private val dogsService: BBService
 ) : ViewModel() {
 
     var breedsList = mainDao.getBreedsList()
@@ -35,7 +35,7 @@ class CDGMainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            loadBreedsList {
+            loadCharacterssList {
                 (errorLiveData.value)?.let { error -> error(it) }
             }
         }
@@ -43,22 +43,16 @@ class CDGMainViewModel @Inject constructor(
         totalCount.postValue(0)
     }
 
-    suspend fun loadBreedsList(error: (String?) -> Unit) = withContext(Dispatchers.IO) {
+    suspend fun loadCharacterssList(error: (String?) -> Unit) = withContext(Dispatchers.IO) {
         val breed = breedsList?.value
         if (breed == null || breed.isEmpty() ) {
             try {
-                val result = dogsService.fetchBreeds()
-                if (result.status == CDGConstants.SERVER_SUCCESS) {
-                    convertAndSaveBreedsData(result)
-                } else {
-                    error(
-                        CDGApplication.instance.applicationContext.getString(R.string.internal_server_error)
-                    )
-                }
+                val result = dogsService.fetchCharacters()
+                convertAndSaveBreedsData(result)
             } catch (e: retrofit2.HttpException) {
-                error(CDGApplication.instance.applicationContext.getString(R.string.communication_error))
+                error(BBApplication.instance.applicationContext.getString(R.string.communication_error))
             } catch (e: Exception) {
-                error(CDGApplication.instance.applicationContext.getString(R.string.unknown_error))
+                error(BBApplication.instance.applicationContext.getString(R.string.unknown_error))
             }
         }
     }
@@ -94,13 +88,13 @@ class CDGMainViewModel @Inject constructor(
                 }
             } else {
                 error(
-                    CDGApplication.instance.applicationContext.getString(R.string.internal_server_error)
+                    BBApplication.instance.applicationContext.getString(R.string.internal_server_error)
                 )
             }
         } catch (e: retrofit2.HttpException) {
-            error(CDGApplication.instance.applicationContext.getString(R.string.communication_error))
+            error(BBApplication.instance.applicationContext.getString(R.string.communication_error))
         } catch (e: Exception) {
-            error(CDGApplication.instance.applicationContext.getString(R.string.unknown_error))
+            error(BBApplication.instance.applicationContext.getString(R.string.unknown_error))
         }
     }
 
@@ -118,7 +112,7 @@ class CDGMainViewModel @Inject constructor(
             if (it.value.isEmpty()) {
                 // Single breed
                 mainDao.insertBreed(
-                    CDGBreedItem(
+                    BBCharacterListItem(
                         index++,
                         it.key,
                         "",
@@ -129,7 +123,7 @@ class CDGMainViewModel @Inject constructor(
                 // Muptiple breeds
                 it.value.forEach { prefix ->
                     mainDao.insertBreed(
-                        CDGBreedItem(
+                        BBCharacterListItem(
                             index++,
                             "$prefix ${it.key}",
                             "",
