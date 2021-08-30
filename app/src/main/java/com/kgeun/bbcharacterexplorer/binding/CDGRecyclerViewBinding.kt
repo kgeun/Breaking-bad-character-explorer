@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 object CDGRecyclerViewBinding {
     @JvmStatic
-    @BindingAdapter("breedsAdapter")
+    @BindingAdapter("rvAdapter")
     fun bindBreedAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>?) {
         if (adapter == null) {
             return

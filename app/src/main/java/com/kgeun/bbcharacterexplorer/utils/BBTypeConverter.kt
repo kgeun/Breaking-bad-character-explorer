@@ -26,7 +26,6 @@ class BBTypeConverter {
         return items
     }
 
-
     @TypeConverter
     fun gettingListFromInt(items: String): List<String> {
         val list = mutableListOf<String>()

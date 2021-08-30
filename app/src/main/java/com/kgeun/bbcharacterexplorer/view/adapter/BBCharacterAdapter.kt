@@ -11,7 +11,7 @@ import com.kgeun.bbcharacterexplorer.data.model.network.BBCharacter
 import com.kgeun.bbcharacterexplorer.databinding.ListitemCharacterBinding
 import com.kgeun.bbcharacterexplorer.view.fragment.BBCharacterListFragmentDirections
 
-class CDGCharacterAdapter(val parentView: ViewGroup, val characterList: List<BBCharacter>?) :
+class BBCharacterAdapter(val parentView: ViewGroup, val characterList: List<BBCharacter>?) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

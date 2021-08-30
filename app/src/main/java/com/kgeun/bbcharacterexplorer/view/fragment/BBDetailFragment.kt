@@ -4,21 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import com.kgeun.bbcharacterexplorer.R
 import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import com.kgeun.bbcharacterexplorer.databinding.FragmentDetailBinding
-import com.kgeun.bbcharacterexplorer.utils.CDGUtils
 import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
-import com.kgeun.bbcharacterexplorer.view.adapter.CDGGalleryAdapter
 import com.kgeun.bbcharacterexplorer.viewmodel.CDGMainViewModel
 import javax.inject.Inject
 

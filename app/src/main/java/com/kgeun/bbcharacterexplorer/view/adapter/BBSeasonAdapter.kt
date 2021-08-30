@@ -1,0 +1,47 @@
+package com.kgeun.bbcharacterexplorer.view.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
+import com.kgeun.bbcharacterexplorer.data.model.ui.BBSeasonItem
+import com.kgeun.bbcharacterexplorer.databinding.ListitemSeasonSelectionBinding
+
+class BBSeasonAdapter(val parentView: ViewGroup, val seasonList: HashMap<Int, BBSeasonItem>?, val buttonCallback: (BBSeasonItem) -> Unit) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        SeasonHolder(
+            ListitemSeasonSelectionBinding.inflate(
+                LayoutInflater.from(parentView.context), parentView, false
+            )
+        )
+
+    override fun getItemCount(): Int = seasonList?.size ?: 0
+
+    inner class SeasonHolder(
+        private val binding: ListitemSeasonSelectionBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: BBSeasonItem) {
+            binding.apply {
+                seasonitem = item
+                root.isClickable = true
+                root.isFocusable = true
+                root.isSelected = item.selected
+                root.setOnClickListener {
+                    item.selected = !item.selected
+                    buttonCallback(item)
+                    CDGAnalytics.sendClick("ClickSeason_${javaClass.simpleName}")
+                }
+                executePendingBindings()
+            }
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        seasonList?.let { list ->
+            seasonList[position + 1]?.let { (holder as SeasonHolder).bind(it) }
+        }
+    }
+}
