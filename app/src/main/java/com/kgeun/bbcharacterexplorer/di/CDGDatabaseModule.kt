@@ -26,7 +26,7 @@ class CDGDatabaseModule {
         return Room.databaseBuilder(
             appContext,
             BBAppDatabase::class.java,
-            "dogsgallery"
+            "breaking_bad"
         ).build()
     }
 

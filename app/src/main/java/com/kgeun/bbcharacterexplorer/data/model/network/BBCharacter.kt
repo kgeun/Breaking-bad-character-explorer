@@ -1,9 +1,11 @@
 package com.kgeun.bbcharacterexplorer.data.model.network
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "character")
 data class BBCharacter(
+    @PrimaryKey
     val char_id: Long = 0L,
     val name: String = "",
     val birthday: String = "",
