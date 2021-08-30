@@ -6,7 +6,7 @@
     <data>
         <variable
             name="adapter"
-            type="com.kgeun.bbcharacterexplorer.view.adapter.CDGGalleryAdapter" />
+            type="com.kgeun.bbcharacterexplorer.view.adapter.BBSeasonAdapter" />
         <variable
             name="breedsName"
             type="java.lang.String" />

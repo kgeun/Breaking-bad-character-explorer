@@ -11,6 +11,9 @@
     <color name="primary_teal_1_0.1">#1A00E6CD</color>
     <color name="primary_teal_1_0.3">#4D00E6CD</color>
 
+    <!-- Skyblue Series -->
+    <color name="primary_skyblue_1">#1761b3</color>
+
     <!-- Achromatic Series -->
     <color name="basic_black">#292929</color>
     <color name="grey1">#777777</color>
