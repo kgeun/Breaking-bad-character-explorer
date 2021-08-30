@@ -6,72 +6,57 @@
     <data>
         <variable
             name="adapter"
-            type="to.chip.dogsgallery.view.adapter.CDGBreedsAdapter" />
-        <variable
-            name="count"
-            type="java.lang.Integer" />
+            type="com.kgeun.bbcharacterexplorer.view.adapter.CDGCharacterAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary_bright_violet"
+        android:background="@color/primary_dark_navy_1"
         android:paddingHorizontal="@dimen/global_horizontal_margin">
 
         <TextView
-            android:id="@+id/breedsCountTitle"
+            android:id="@+id/appTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary_navy_3"
+            android:textColor="@color/white0.9"
             android:layout_marginTop="35dp"
-            android:text="@string/total_breeds"
-            android:textSize="16sp"
+            android:text="@string/Characters"
+            android:textSize="21sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
-
-        <TextView
-            android:id="@+id/breedsCountContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primary_navy_2"
-            android:layout_marginTop="4dp"
-            android:text="@{count.toString()}"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/breedsCountTitle"
-            app:layout_constraintStart_toStartOf="parent"/>
+        
+        <EditText
+            android:id="@+id/searchName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/rcs_search_background_1"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white0.9"
+            android:textColorHint="@color/white0.9"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:hint="@string/search"
+            app:layout_constraintTop_toBottomOf="@id/appTitle"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBreedsList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            android:layout_marginTop="10dp"
+            android:layout_marginVertical="20dp"
             android:paddingBottom="100dp"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/breedsCountContent"
+            app:layout_constraintTop_toBottomOf="@id/searchName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:breedsAdapter="@{adapter}"
-            tools:listitem="@layout/listitem_breeds"
+            tools:listitem="@layout/listitem_character"
             tools:itemCount="5"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/rcs_violet_gradient_1"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            app:layout_constraintTop_toTopOf="@id/rvBreedsList"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@drawable/rcs_violet_gradient_1_reverse"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

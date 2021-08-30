@@ -6,7 +6,7 @@
     <data>
         <variable
             name="imageItem"
-            type="to.chip.dogsgallery.data.model.ui.CDGImageItem" />
+            type="com.kgeun.bbcharacterexplorer.data.model.ui.CDGImageItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

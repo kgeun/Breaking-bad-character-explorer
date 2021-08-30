@@ -6,7 +6,7 @@
     <data>
         <variable
             name="adapter"
-            type="to.chip.dogsgallery.view.adapter.CDGGalleryAdapter" />
+            type="com.kgeun.bbcharacterexplorer.view.adapter.CDGGalleryAdapter" />
         <variable
             name="breedsName"
             type="java.lang.String" />
