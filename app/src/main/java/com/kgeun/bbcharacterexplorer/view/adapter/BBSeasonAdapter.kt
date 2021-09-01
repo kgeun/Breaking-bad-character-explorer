@@ -30,8 +30,14 @@ class BBSeasonAdapter(val parentView: ViewGroup, val seasonList: HashMap<Int, BB
                 root.isFocusable = true
                 root.isSelected = item.selected
                 root.setOnClickListener {
-                    item.selected = !item.selected
-                    buttonCallback(item)
+                    root.isSelected = !item.selected
+                    buttonCallback(
+                        BBSeasonItem(
+                            item.text,
+                            item.season,
+                            !item.selected
+                        )
+                    )
                     CDGAnalytics.sendClick("ClickSeason_${javaClass.simpleName}")
                 }
                 executePendingBindings()
