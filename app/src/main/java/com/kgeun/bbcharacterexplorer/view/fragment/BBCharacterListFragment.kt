@@ -50,8 +50,11 @@ class BBCharacterListFragment : CDGBaseFragment() {
         mainViewModel.seasonLiveData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.seasonAdapter = BBSeasonAdapter(binding.root as ViewGroup, it) { item ->
-                    Log.i("kglee", "season : ${item.season} / item : ${item.selected}")
-                    mainViewModel.seasonLiveData.value?.set(item.season, item)
+                    mainViewModel.seasonLiveData.postValue(
+                        mainViewModel.seasonLiveData.value.also {
+                            it?.set(item.season, item)
+                        }
+                    )
                 }
             }
         }
