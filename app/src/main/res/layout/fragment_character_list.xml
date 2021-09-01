@@ -14,7 +14,7 @@
 
         <variable
             name="viewModel"
-            type="com.kgeun.bbcharacterexplorer.viewmodel.CDGMainViewModel" />
+            type="com.kgeun.bbcharacterexplorer.viewmodel.BBMainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -10,14 +10,14 @@ import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import com.kgeun.bbcharacterexplorer.databinding.FragmentDetailBinding
 import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
-import com.kgeun.bbcharacterexplorer.viewmodel.CDGMainViewModel
+import com.kgeun.bbcharacterexplorer.viewmodel.BBMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class BBDetailFragment : CDGBaseFragment() {
     private lateinit var binding: FragmentDetailBinding
-    val mainViewModel: CDGMainViewModel by viewModels()
+    val mainViewModel: BBMainViewModel by viewModels()
     @Inject
     lateinit var mainDao: BBMainDao
     var breedName: String = ""

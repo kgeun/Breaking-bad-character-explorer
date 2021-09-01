@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class CDGMainViewModel @Inject constructor(
+class BBMainViewModel @Inject constructor(
     private val mainDao: BBMainDao,
     private val bbService: BBService
 ) : ViewModel() {
