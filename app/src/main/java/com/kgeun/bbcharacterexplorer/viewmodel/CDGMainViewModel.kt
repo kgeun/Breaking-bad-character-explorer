@@ -2,10 +2,9 @@ package com.kgeun.bbcharacterexplorer.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import androidx.room.Query
+import androidx.sqlite.db.SimpleSQLiteQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.kgeun.bbcharacterexplorer.BBApplication
 import com.kgeun.bbcharacterexplorer.R
 import com.kgeun.bbcharacterexplorer.constants.CDGConstants
@@ -14,6 +13,10 @@ import com.kgeun.bbcharacterexplorer.data.model.ui.BBSeasonItem
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import com.kgeun.bbcharacterexplorer.network.BBService
 import com.kgeun.bbcharacterexplorer.utils.BBTypeConverter
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,32 +29,42 @@ class CDGMainViewModel @Inject constructor(
     var errorLiveData = MutableLiveData<(String?) -> Unit> {}
     var searchKeywordLiveData = MutableLiveData<String>()
     var seasonLiveData = MutableLiveData<HashMap<Int,BBSeasonItem>?>()
-    var seasonListStr = ""
     var searchKeyword = ""
 
     var charactersLiveData = MediatorLiveData<List<BBCharacter>?>().apply {
+
         addSource(defaultCharactersList) { value ->
             setValue(value)
         }
+
         addSource(searchKeywordLiveData) { value ->
             searchKeyword = value
+            val seasonList = seasonLiveData.value?.let {
+                seasonLiveData.value!!.values.filter { it.selected }.map { it.season }.toList()
+            } ?: listOf()
 
-            if (value == "" && seasonListStr == "") {
+            if (value == "" && numberOfSelectedSeasons(seasonLiveData.value) == 0) {
                 viewModelScope.launch {
                     withContext(Dispatchers.Default) {
                         postValue(mainDao.getCharactersListSync())
                     }
                 }
-            } else if (value == "" && seasonListStr != "") {
+            } else if (value == "" && numberOfSelectedSeasons(seasonLiveData.value) > 0) {
                 viewModelScope.launch {
                     withContext(Dispatchers.Default) {
-                        postValue(mainDao.findCharactersListBySeasonListSync(seasonListStr))
+                        postValue(
+                            mainDao.findCharactersListBySeasonListSync(
+                                createDynamicQueryForSeasonSearch(
+                                    seasonList
+                                )
+                            )
+                        )
                     }
                 }
-            } else if (value != "" && seasonListStr == "") {
+            } else if (value != "" && numberOfSelectedSeasons(seasonLiveData.value) == 0) {
                 viewModelScope.launch {
                     withContext(Dispatchers.Default) {
-                        postValue(mainDao.findCharactersListByKeywordSync(value))
+                        postValue(mainDao.findCharactersListByKeywordSync(searchKeyword))
                     }
                 }
             } else {
@@ -59,8 +72,10 @@ class CDGMainViewModel @Inject constructor(
                     withContext(Dispatchers.Default) {
                         postValue(
                             mainDao.findCharactersListByKeywordAndSeasonListSync(
-                                value,
-                                seasonListStr
+                                createDynamicQueryForKeywordAndSeasonSearch(
+                                    value,
+                                    seasonList
+                                )
                             )
                         )
                     }
@@ -72,27 +87,36 @@ class CDGMainViewModel @Inject constructor(
             if (value == null)
                 return@check
 
-            val str = BBTypeConverter().writingStringFromList(
-                value.values.filter { it.selected }.map { it.season }.toList()
-            )
-            seasonListStr = str
+            val seasonList = value.values.filter { it.selected }.map { it.season }.toList()
 
-            if (str == "" && searchKeyword == "") {
+            Log.i("kglee", "seasonList: $seasonList")
+
+            if (numberOfSelectedSeasons(value) == 0 && searchKeyword == "") {
                 viewModelScope.launch {
                     withContext(Dispatchers.Default) {
                         postValue(mainDao.getCharactersListSync())
                     }
                 }
-            } else if (str == "" && searchKeyword != "") {
+            } else if (numberOfSelectedSeasons(value) == 0 && searchKeyword != "") {
                 viewModelScope.launch {
                     withContext(Dispatchers.Default) {
-                        postValue(mainDao.findCharactersListByKeywordSync(searchKeyword))
+                        postValue(
+                            mainDao.findCharactersListByKeywordSync(
+                                searchKeyword
+                            )
+                        )
                     }
                 }
-            } else if (str != "" && searchKeyword == "") {
+            } else if (numberOfSelectedSeasons(value) > 0 && searchKeyword == "") {
                 viewModelScope.launch {
                     withContext(Dispatchers.Default) {
-                        postValue(mainDao.findCharactersListBySeasonListSync(str))
+                        postValue(
+                            mainDao.findCharactersListBySeasonListSync(
+                                createDynamicQueryForSeasonSearch(
+                                    seasonList
+                                )
+                            )
+                        )
                     }
                 }
             } else {
@@ -100,8 +124,10 @@ class CDGMainViewModel @Inject constructor(
                     withContext(Dispatchers.Default) {
                         postValue(
                             mainDao.findCharactersListByKeywordAndSeasonListSync(
-                                searchKeyword,
-                                str
+                                createDynamicQueryForKeywordAndSeasonSearch(
+                                    searchKeyword,
+                                    seasonList
+                                )
                             )
                         )
                     }
@@ -120,6 +146,47 @@ class CDGMainViewModel @Inject constructor(
         seasonLiveData.postValue(CDGConstants.seasonItems as HashMap<Int, BBSeasonItem>)
     }
 
+    fun numberOfSelectedSeasons(list :HashMap<Int, BBSeasonItem>?) :Int =
+        list?.let { list.values.filter { it.selected }.map { it.season }.toList().size } ?: 0
+
+    fun createDynamicQueryForSeasonSearch(list: List<Int>): SupportSQLiteQuery {
+        val args: ArrayList<Any> = ArrayList()
+
+        val sb = StringBuffer("SELECT * FROM character WHERE appearance LIKE ?")
+        args.add("%${list[0]}%")
+
+        if (list.size > 2) {
+            for (i in 1 until list.size) {
+                sb.append(" AND appearance LIKE ?")
+                args.add("%${list[i]}%")
+            }
+        }
+
+        sb.append(" ORDER BY char_id ASC;")
+
+        return SimpleSQLiteQuery(sb.toString(), args.toArray());
+    }
+
+    fun createDynamicQueryForKeywordAndSeasonSearch(value: String, list: List<Int>): SupportSQLiteQuery {
+        val args = ArrayList<Any>()
+
+        val sb = StringBuffer("SELECT * FROM character WHERE appearance LIKE ?")
+        args.add("%${list[0]}%")
+
+        if (list.size > 2) {
+            for (i in 1 until list.size) {
+                sb.append(" AND appearance LIKE ?")
+                args.add("%${list[i]}%")
+            }
+        }
+
+        sb.append(" AND name LIKE ?")
+        args.add("%$value%")
+
+        sb.append(" ORDER BY char_id ASC;")
+
+        return SimpleSQLiteQuery(sb.toString(), args.toArray());
+    }
 
     suspend fun loadCharactersList(error: (String?) -> Unit) = withContext(Dispatchers.IO) {
         val charactersList = defaultCharactersList.value
