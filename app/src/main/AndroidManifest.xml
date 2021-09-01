@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kgeun.bbcharacterexplorer.view.activity.BBMainActivity"/>
+        <activity android:name="com.kgeun.bbcharacterexplorer.view.activity.BBMainActivity"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>
