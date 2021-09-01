@@ -3,11 +3,11 @@ package com.kgeun.bbcharacterexplorer.view.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import com.kgeun.bbcharacterexplorer.R
 import com.kgeun.bbcharacterexplorer.databinding.ActivitySplashBinding
 import com.kgeun.bbcharacterexplorer.view.CDGBaseActivity
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class BBSplashActivity : CDGBaseActivity() {
 

@@ -1,5 +1,6 @@
 package com.kgeun.bbcharacterexplorer.di
 
+import com.kgeun.bbcharacterexplorer.network.BBService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -8,7 +9,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import com.kgeun.bbcharacterexplorer.network.BBService
 import javax.inject.Singleton
 
 @Module

@@ -4,9 +4,9 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
-import dagger.hilt.android.AndroidEntryPoint
 import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 import com.kgeun.bbcharacterexplorer.utils.CDGUtils
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 open class CDGBaseActivity : AppCompatActivity() {

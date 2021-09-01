@@ -1,19 +1,17 @@
 package com.kgeun.bbcharacterexplorer.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.kgeun.bbcharacterexplorer.constants.CDGConstants
-import dagger.hilt.android.AndroidEntryPoint
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import com.kgeun.bbcharacterexplorer.databinding.FragmentCharacterListBinding
 import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
 import com.kgeun.bbcharacterexplorer.view.adapter.BBCharacterAdapter
 import com.kgeun.bbcharacterexplorer.view.adapter.BBSeasonAdapter
 import com.kgeun.bbcharacterexplorer.viewmodel.CDGMainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint

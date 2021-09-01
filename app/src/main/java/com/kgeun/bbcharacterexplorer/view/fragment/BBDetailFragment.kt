@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import dagger.hilt.android.AndroidEntryPoint
 import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import com.kgeun.bbcharacterexplorer.databinding.FragmentDetailBinding
 import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
 import com.kgeun.bbcharacterexplorer.viewmodel.CDGMainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint

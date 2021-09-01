@@ -2,7 +2,6 @@ package com.kgeun.bbcharacterexplorer.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import androidx.room.Query
 import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.kgeun.bbcharacterexplorer.BBApplication
@@ -12,7 +11,6 @@ import com.kgeun.bbcharacterexplorer.data.model.network.BBCharacter
 import com.kgeun.bbcharacterexplorer.data.model.ui.BBSeasonItem
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import com.kgeun.bbcharacterexplorer.network.BBService
-import com.kgeun.bbcharacterexplorer.utils.BBTypeConverter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
