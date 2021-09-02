@@ -44,11 +44,7 @@ class DatabaseAndViewModelTest {
         hiltRule.inject()
 
         mainViewModel = BBMainViewModel(analyticsAdapter.mainDao, analyticsAdapter.bbService)
-        mainViewModel.viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                analyticsAdapter.mainDao.truncateCharacters()
-            }
-        }
+
 
         val charactersInputStream: InputStream = context.assets.open("character_result.json")
         val charactersRawString =
@@ -64,6 +60,7 @@ class DatabaseAndViewModelTest {
 
     @Test
     fun databaseTest() {
+
         mainViewModel.viewModelScope.launch {
             val data = BBCharacter(
                 0,
@@ -79,6 +76,7 @@ class DatabaseAndViewModelTest {
                 listOf()
             )
             withContext(Dispatchers.IO) {
+                analyticsAdapter.mainDao.truncateCharacters()
                 analyticsAdapter.mainDao.insertCharacter(listOf(data))
             }
 
@@ -92,12 +90,6 @@ class DatabaseAndViewModelTest {
     }
 
     @Test
-    fun testNumberOfSelectedSeasons() {
-        assertEquals(0, mainViewModel.numberOfSelectedSeasons(BBConstants.seasonItems))
-    }
-
-
-    @Test
     fun testGetCharacterByCharId() {
         mainViewModel.viewModelScope.launch {
             mainViewModel.getCharacterByCharId(1).observeOnce {
@@ -108,21 +100,7 @@ class DatabaseAndViewModelTest {
         }
     }
 
-    @Test
-    fun testCreatedDynamicQuery1() {
-        val query = mainViewModel.createDynamicQueryForSeasonSearch(listOf(1,2,3))
 
-        assertEquals("SELECT * FROM character WHERE appearance LIKE ? AND appearance LIKE ? AND appearance LIKE ?"
-            + " ORDER BY char_id ASC;", query.sql)
-    }
-
-    @Test
-    fun testCreatedDynamicQuery2() {
-        val query = mainViewModel.createDynamicQueryForKeywordAndSeasonSearch("value", listOf(1,2,3))
-
-        assertEquals("SELECT * FROM character WHERE appearance LIKE ? AND appearance LIKE ? AND appearance LIKE ?"
-                + " AND name LIKE ? ORDER BY char_id ASC;", query.sql)
-    }
 }
 
 class CustomObserver<T>(private val handler: (T?) -> Unit) : Observer<T>, LifecycleOwner {
