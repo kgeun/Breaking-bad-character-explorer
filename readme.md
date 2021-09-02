@@ -44,23 +44,23 @@ Github public repository, https://github.com/kgeun/Breaking-bad-character-explor
 
 2. Testing for Memory Persistence with Livedata (instrumented test)
 
-> Test Case : Check for equality for data input and output of Room database and Livedata
+> Test Case : Check for equality for data input and output of Room database and Livedata  
 > Result : **Pass**  
 
 3. Testing for Memory Persistence (instrumented test)  
 
-> Input : Without Liveadata, Check data equality with pure database  
+> Test Case : Without Liveadata, Check data equality with pure database  
 > Result : **Pass**  
 
 4. Testing for Business Logic (pure logic test)
 
-> Input : Check for number of selected seasons  
+> Test Case : Check for number of selected seasons  
 > Result : **Pass**    
 
-> Input : Check for dynamic query for keyword and season appearance search  
+> Test Case : Check for dynamic query for keyword and season appearance search  
 > Result : **Pass**    
 
-> Input : Check for dynamic query for season appearance search  
+> Test Case : Check for dynamic query for season appearance search  
 > Result : **Pass**    
 
 **Total** : 6 cases  
