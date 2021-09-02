@@ -8,5 +8,4 @@ object BBUtils {
         Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
     }
 
-
 }

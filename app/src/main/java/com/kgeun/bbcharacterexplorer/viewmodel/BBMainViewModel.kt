@@ -87,8 +87,6 @@ class BBMainViewModel @Inject constructor(
 
             val seasonList = value.values.filter { it.selected }.map { it.season }.toList()
 
-            Log.i("kglee", "seasonList: $seasonList")
-
             if (numberOfSelectedSeasons(value) == 0 && searchKeyword == "") {
                 viewModelScope.launch {
                     withContext(Dispatchers.Default) {
