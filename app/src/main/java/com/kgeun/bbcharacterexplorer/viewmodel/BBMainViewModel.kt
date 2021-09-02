@@ -10,6 +10,9 @@ import com.kgeun.bbcharacterexplorer.data.model.network.BBCharacter
 import com.kgeun.bbcharacterexplorer.data.model.ui.BBSeasonItem
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import com.kgeun.bbcharacterexplorer.network.BBService
+import com.kgeun.bbcharacterexplorer.utils.BBUtils.createDynamicQueryForKeywordAndSeasonSearch
+import com.kgeun.bbcharacterexplorer.utils.BBUtils.createDynamicQueryForSeasonSearch
+import com.kgeun.bbcharacterexplorer.utils.BBUtils.numberOfSelectedSeasons
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -145,47 +148,6 @@ class BBMainViewModel @Inject constructor(
         return mainDao.getCharacterByCharId(charId)
     }
 
-    fun numberOfSelectedSeasons(list :HashMap<Int, BBSeasonItem>?) :Int =
-        list?.let { list.values.filter { it.selected }.map { it.season }.toList().size } ?: 0
-
-    fun createDynamicQueryForSeasonSearch(list: List<Int>): SupportSQLiteQuery {
-        val args: ArrayList<Any> = ArrayList()
-
-        val sb = StringBuffer("SELECT * FROM character WHERE appearance LIKE ?")
-        args.add("%${list[0]}%")
-
-        if (list.size >= 2) {
-            for (i in 1 until list.size) {
-                sb.append(" AND appearance LIKE ?")
-                args.add("%${list[i]}%")
-            }
-        }
-
-        sb.append(" ORDER BY char_id ASC;")
-
-        return SimpleSQLiteQuery(sb.toString(), args.toArray())
-    }
-
-    fun createDynamicQueryForKeywordAndSeasonSearch(value: String, list: List<Int>): SupportSQLiteQuery {
-        val args = ArrayList<Any>()
-
-        val sb = StringBuffer("SELECT * FROM character WHERE appearance LIKE ?")
-        args.add("%${list[0]}%")
-
-        if (list.size >= 2) {
-            for (i in 1 until list.size) {
-                sb.append(" AND appearance LIKE ?")
-                args.add("%${list[i]}%")
-            }
-        }
-
-        sb.append(" AND name LIKE ?")
-        args.add("%$value%")
-
-        sb.append(" ORDER BY char_id ASC;")
-
-        return SimpleSQLiteQuery(sb.toString(), args.toArray())
-    }
 
     suspend fun loadCharactersList(error: (String?) -> Unit) = withContext(Dispatchers.IO) {
         val charactersList = defaultCharactersList.value
