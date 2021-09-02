@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class CDGDatabaseModule {
+class BBDatabaseModule {
     @Provides
     @Singleton
     fun provideMainDao(appDatabase: BBAppDatabase): BBMainDao = appDatabase.BBMainDao()

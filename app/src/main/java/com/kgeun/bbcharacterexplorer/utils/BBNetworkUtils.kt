@@ -9,7 +9,7 @@ import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-object CDGNetworkUtils : ConnectivityManager.NetworkCallback() {
+object BBNetworkUtils : ConnectivityManager.NetworkCallback() {
 
     private val networkLiveData: MutableLiveData<Boolean> = MutableLiveData()
 

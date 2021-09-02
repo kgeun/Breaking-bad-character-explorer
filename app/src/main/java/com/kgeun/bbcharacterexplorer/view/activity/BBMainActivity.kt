@@ -5,10 +5,10 @@ import android.view.Window
 import android.view.WindowManager
 import com.kgeun.bbcharacterexplorer.R
 import com.kgeun.bbcharacterexplorer.databinding.ActivityMainBinding
-import com.kgeun.bbcharacterexplorer.view.CDGBaseActivity
+import com.kgeun.bbcharacterexplorer.view.BBBaseActivity
 
 
-class BBMainActivity : CDGBaseActivity() {
+class BBMainActivity : BBBaseActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 

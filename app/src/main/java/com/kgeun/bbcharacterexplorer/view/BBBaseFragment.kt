@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 
-open class CDGBaseFragment : Fragment() {
+open class BBBaseFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

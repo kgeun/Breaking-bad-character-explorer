@@ -6,7 +6,7 @@ import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.kgeun.bbcharacterexplorer.BBApplication
 import com.kgeun.bbcharacterexplorer.R
-import com.kgeun.bbcharacterexplorer.constants.CDGConstants
+import com.kgeun.bbcharacterexplorer.constants.BBConstants
 import com.kgeun.bbcharacterexplorer.data.model.network.BBCharacter
 import com.kgeun.bbcharacterexplorer.data.model.ui.BBSeasonItem
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
@@ -141,7 +141,7 @@ class BBMainViewModel @Inject constructor(
             }
         }
         searchKeywordLiveData.postValue("")
-        seasonLiveData.postValue(CDGConstants.seasonItems.clone() as HashMap<Int, BBSeasonItem>)
+        seasonLiveData.postValue(BBConstants.seasonItems.clone() as HashMap<Int, BBSeasonItem>)
     }
 
     fun getCharacterByCharId(charId: Long): LiveData<BBCharacter?> {

@@ -6,7 +6,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.kgeun.bbcharacterexplorer.R
-import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 import com.kgeun.bbcharacterexplorer.data.model.network.BBCharacter
 import com.kgeun.bbcharacterexplorer.databinding.ListitemCharacterBinding
 import com.kgeun.bbcharacterexplorer.view.fragment.BBCharacterListFragmentDirections

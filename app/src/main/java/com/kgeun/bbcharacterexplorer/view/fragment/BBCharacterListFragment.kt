@@ -1,17 +1,15 @@
 package com.kgeun.bbcharacterexplorer.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.forEach
 import androidx.fragment.app.viewModels
-import com.kgeun.bbcharacterexplorer.constants.CDGConstants
+import com.kgeun.bbcharacterexplorer.constants.BBConstants
 import com.kgeun.bbcharacterexplorer.data.model.ui.BBSeasonItem
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import com.kgeun.bbcharacterexplorer.databinding.FragmentCharacterListBinding
-import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
+import com.kgeun.bbcharacterexplorer.view.BBBaseFragment
 import com.kgeun.bbcharacterexplorer.view.adapter.BBCharacterAdapter
 import com.kgeun.bbcharacterexplorer.view.adapter.BBSeasonAdapter
 import com.kgeun.bbcharacterexplorer.viewmodel.BBMainViewModel
@@ -19,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class BBCharacterListFragment : CDGBaseFragment() {
+class BBCharacterListFragment : BBBaseFragment() {
     private lateinit var binding: FragmentCharacterListBinding
     val mainViewModel: BBMainViewModel by viewModels()
     @Inject
@@ -49,7 +47,7 @@ class BBCharacterListFragment : CDGBaseFragment() {
         super.onPause()
         mainViewModel.searchKeywordLiveData.postValue("")
         mainViewModel.seasonLiveData.postValue(
-            CDGConstants.seasonItems as HashMap<Int, BBSeasonItem>
+            BBConstants.seasonItems as HashMap<Int, BBSeasonItem>
         )
         binding.charactersList.adapter!!.notifyDataSetChanged()
     }

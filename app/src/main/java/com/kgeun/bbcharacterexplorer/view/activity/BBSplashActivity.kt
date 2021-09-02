@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.kgeun.bbcharacterexplorer.R
 import com.kgeun.bbcharacterexplorer.databinding.ActivitySplashBinding
-import com.kgeun.bbcharacterexplorer.view.CDGBaseActivity
+import com.kgeun.bbcharacterexplorer.view.BBBaseActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class BBSplashActivity : CDGBaseActivity() {
+class BBSplashActivity : BBBaseActivity() {
 
     private val binding by lazy { ActivitySplashBinding.inflate(layoutInflater) }
 

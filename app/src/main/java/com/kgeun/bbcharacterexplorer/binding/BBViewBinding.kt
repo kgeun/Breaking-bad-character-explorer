@@ -7,9 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 
-object CDGViewBinding {
+object BBViewBinding {
 
     @JvmStatic
     @BindingAdapter("setThumbnailUrl")

@@ -7,15 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
-import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import com.kgeun.bbcharacterexplorer.databinding.FragmentDetailBinding
-import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
+import com.kgeun.bbcharacterexplorer.view.BBBaseFragment
 import com.kgeun.bbcharacterexplorer.viewmodel.BBMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class BBDetailFragment : CDGBaseFragment() {
+class BBDetailFragment : BBBaseFragment() {
     private lateinit var binding: FragmentDetailBinding
     val mainViewModel: BBMainViewModel by viewModels()
     var charId: Long = 1L
