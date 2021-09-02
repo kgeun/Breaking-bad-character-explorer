@@ -1,10 +1,10 @@
 # Breaking Bad Character Explorer
 
-GAN Home Assignment, Kyung Geun Lee
-29th Aug ~ 2th Sep 2021
+GAN Home Assignment, Kyung Geun Lee  
+29th Aug ~ 2th Sep 2021  
 
 ## Introduction
-This is an application that provides informations about characters about Breaking Bad drama.
+This is an application that provides informations about characters about Breaking Bad drama.  
 
 ## Screenshots
 ![bbce1](https://user-images.githubusercontent.com/7823937/131785335-c5c63577-28e7-4f6f-bf70-e73816d0a8d3.jpeg) 
@@ -12,7 +12,8 @@ This is an application that provides informations about characters about Breakin
 ![bbce3](https://user-images.githubusercontent.com/7823937/131785347-854f6373-6b5a-4a8e-b608-50146bf93470.jpeg) 
 
 ## How to use the app
-You can download app's package file here (https://drive.google.com/drive/folders/1D0nAixvuRdoxCJQmlPAYdJLu4ff9OHPI?usp=sharing).  Please download BBCE_live_release_1.0_1_20210902.apk file and install, execute it.
+You can download app's package file here (https://drive.google.com/drive/folders/1D0nAixvuRdoxCJQmlPAYdJLu4ff9OHPI?usp=sharing).  
+Please download BBCE_live_release_1.0_1_20210902.apk file and install, execute it.
 
 ## Source Repository
 Github public repository, https://github.com/kgeun/Breaking-bad-character-explorer
@@ -32,6 +33,7 @@ Github public repository, https://github.com/kgeun/Breaking-bad-character-explor
 - Aimed simple MVVM architecture to construct and read fast and easy.
 - Applied dark but elegant design to fit the atmosphere of the subject of the project.
 - Through Livedata and asyncronous processing, filtering result showed immedialtely without clicking submit button.
+- functions like product flavor seperation, proguard application, sign with key applied to real field are also applied.
 
 
 ## Test Cases and Results (Unit Test through JUnit4)
@@ -61,7 +63,7 @@ Github public repository, https://github.com/kgeun/Breaking-bad-character-explor
 > Input : Check for dynamic query for season appearance search  
 > Result : **Pass**    
 
-**Total** : 6 cases
-**Pass**: 6 cases
-**Fail** : 0 cases
+**Total** : 6 cases  
+**Pass**: 6 cases  
+**Fail** : 0 cases  
     
