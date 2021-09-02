@@ -3,7 +3,6 @@ package com.kgeun.bbcharacterexplorer.constants
 import com.kgeun.bbcharacterexplorer.data.model.ui.BBSeasonItem
 
 object BBConstants {
-    val ANIM_DURATION: Long = 800
     val SPLASH_LOGO_DURATION_1: Long = 500
 
     val seasonItems = hashMapOf<Int, BBSeasonItem>(

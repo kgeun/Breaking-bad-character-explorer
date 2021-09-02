@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 import com.kgeun.bbcharacterexplorer.databinding.FragmentDetailBinding
 import com.kgeun.bbcharacterexplorer.view.BBBaseFragment
 import com.kgeun.bbcharacterexplorer.viewmodel.BBMainViewModel
@@ -44,7 +43,6 @@ class BBDetailFragment : BBBaseFragment() {
     private fun setListener() {
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
-            CDGAnalytics.sendClick("ClickBack_${javaClass.simpleName}")
         }
     }
 }
