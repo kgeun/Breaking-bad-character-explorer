@@ -37,22 +37,22 @@ Github public repository, https://github.com/kgeun/Breaking-bad-character-explor
 
 
 ## Test Cases and Results (Unit Test through JUnit4)
-1. Testing for API  
+1. Testing for API (instrumented test)  
 
 > Test Case : Check for Response of server request  
 > Result : **Pass**  
 
-2. Testing for Memory Persistence with Livedata
+2. Testing for Memory Persistence with Livedata (instrumented test)
 
 > Test Case : Check for equality for data input and output of Room database and Livedata
 > Result : **Pass**  
 
-3. Testing for Memory Persistence  
+3. Testing for Memory Persistence (instrumented test)  
 
 > Input : Without Liveadata, Check data equality with pure database  
 > Result : **Pass**  
 
-4. Testing for Business Logic
+4. Testing for Business Logic (pure logic test)
 
 > Input : Check for number of selected seasons  
 > Result : **Pass**    
