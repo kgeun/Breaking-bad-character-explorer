@@ -46,10 +46,8 @@ class BBCharacterListFragment : BBBaseFragment() {
     override fun onPause() {
         super.onPause()
         mainViewModel.searchKeywordLiveData.postValue("")
-        mainViewModel.seasonLiveData.postValue(
-            BBConstants.seasonItems
-        )
-        binding.charactersList.adapter!!.notifyDataSetChanged()
+        mainViewModel.seasonLiveData.value = BBConstants.seasonItems.also{ it.map { it.value.selected = false } }
+        binding.seasonsList.invalidate()
     }
 
     private fun bindUi() {

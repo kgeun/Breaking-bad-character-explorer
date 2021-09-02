@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
         
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/searchName"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -47,6 +47,8 @@
             android:textSize="16sp"
             android:gravity="center"
             android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
             android:text="@={viewModel.searchKeywordLiveData}"
             android:layout_marginHorizontal="@dimen/global_horizontal_margin"
             android:hint="@string/search"
