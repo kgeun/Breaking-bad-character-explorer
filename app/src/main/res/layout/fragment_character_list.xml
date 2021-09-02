@@ -50,6 +50,7 @@
             android:text="@={viewModel.searchKeywordLiveData}"
             android:layout_marginHorizontal="@dimen/global_horizontal_margin"
             android:hint="@string/search"
+            android:imeOptions="actionDone"
             app:layout_constraintTop_toBottomOf="@id/appTitle"/>
 
         <androidx.recyclerview.widget.RecyclerView

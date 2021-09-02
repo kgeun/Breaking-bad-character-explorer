@@ -141,7 +141,11 @@ class BBMainViewModel @Inject constructor(
             }
         }
         searchKeywordLiveData.postValue("")
-        seasonLiveData.postValue(CDGConstants.seasonItems as HashMap<Int, BBSeasonItem>)
+        seasonLiveData.postValue(CDGConstants.seasonItems.clone() as HashMap<Int, BBSeasonItem>)
+    }
+
+    fun getCharacterByCharId(charId: Long): LiveData<BBCharacter?> {
+        return mainDao.getCharacterByCharId(charId)
     }
 
     fun numberOfSelectedSeasons(list :HashMap<Int, BBSeasonItem>?) :Int =
@@ -153,7 +157,7 @@ class BBMainViewModel @Inject constructor(
         val sb = StringBuffer("SELECT * FROM character WHERE appearance LIKE ?")
         args.add("%${list[0]}%")
 
-        if (list.size > 2) {
+        if (list.size >= 2) {
             for (i in 1 until list.size) {
                 sb.append(" AND appearance LIKE ?")
                 args.add("%${list[i]}%")
@@ -171,7 +175,7 @@ class BBMainViewModel @Inject constructor(
         val sb = StringBuffer("SELECT * FROM character WHERE appearance LIKE ?")
         args.add("%${list[0]}%")
 
-        if (list.size > 2) {
+        if (list.size >= 2) {
             for (i in 1 until list.size) {
                 sb.append(" AND appearance LIKE ?")
                 args.add("%${list[i]}%")
