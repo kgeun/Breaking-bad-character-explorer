@@ -9,5 +9,9 @@
     <string name="Characters">Breaking Bad\nCharacter Explorer</string>
     <string name="search">Search</string>
     <string name="season_appearance">Season Appearance</string>
+    <string name="wiki">Wiki</string>
+    <string name="occupation">Occupation</string>
+    <string name="status">Status</string>
+    <string name="season_appearenace">Season Appearenace</string>
 
 </resources>
