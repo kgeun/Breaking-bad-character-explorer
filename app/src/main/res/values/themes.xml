@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DogsGallery" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.BreakingBad" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_teal_1</item>
         <item name="colorPrimaryVariant">@color/primary_teal_2</item>

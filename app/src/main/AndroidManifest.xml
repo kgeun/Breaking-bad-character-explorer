@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:name="com.kgeun.bbcharacterexplorer.BBApplication"
-        android:theme="@style/Theme.DogsGallery"
+        android:theme="@style/Theme.BreakingBad"
         tools:replace="android:allowBackup,android:label">
         <activity android:name="com.kgeun.bbcharacterexplorer.view.activity.BBSplashActivity">
             <intent-filter>

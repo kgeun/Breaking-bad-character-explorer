@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DogsGallery.V29" parent="Theme.DogsGallery">
+    <style name="Theme.BreakingBad.V29" parent="Theme.BreakingBad">
         <!-- Customize your theme here. -->
         <item name="android:forceDarkAllowed">false</item>
     </style>

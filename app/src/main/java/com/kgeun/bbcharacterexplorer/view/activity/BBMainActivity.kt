@@ -17,6 +17,6 @@ class BBMainActivity : BBBaseActivity() {
         setContentView(binding.root)
         val window: Window = window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.setStatusBarColor(getColor(R.color.primary_teal_1))
+        window.statusBarColor = getColor(R.color.primary_teal_1)
     }
 }

@@ -166,7 +166,7 @@ class BBMainViewModel @Inject constructor(
 
         sb.append(" ORDER BY char_id ASC;")
 
-        return SimpleSQLiteQuery(sb.toString(), args.toArray());
+        return SimpleSQLiteQuery(sb.toString(), args.toArray())
     }
 
     fun createDynamicQueryForKeywordAndSeasonSearch(value: String, list: List<Int>): SupportSQLiteQuery {
@@ -187,7 +187,7 @@ class BBMainViewModel @Inject constructor(
 
         sb.append(" ORDER BY char_id ASC;")
 
-        return SimpleSQLiteQuery(sb.toString(), args.toArray());
+        return SimpleSQLiteQuery(sb.toString(), args.toArray())
     }
 
     suspend fun loadCharactersList(error: (String?) -> Unit) = withContext(Dispatchers.IO) {

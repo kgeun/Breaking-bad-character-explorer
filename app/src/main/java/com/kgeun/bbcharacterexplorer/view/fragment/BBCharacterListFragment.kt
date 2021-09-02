@@ -47,7 +47,7 @@ class BBCharacterListFragment : BBBaseFragment() {
         super.onPause()
         mainViewModel.searchKeywordLiveData.postValue("")
         mainViewModel.seasonLiveData.postValue(
-            BBConstants.seasonItems as HashMap<Int, BBSeasonItem>
+            BBConstants.seasonItems
         )
         binding.charactersList.adapter!!.notifyDataSetChanged()
     }
