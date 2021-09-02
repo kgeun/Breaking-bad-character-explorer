@@ -1,6 +1,5 @@
 package com.kgeun.bbcharacterexplorer.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery

@@ -5,30 +5,24 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.kgeun.bbcharacterexplorer.constants.BBConstants
 import com.kgeun.bbcharacterexplorer.data.model.network.BBCharacter
-import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
-import com.kgeun.bbcharacterexplorer.network.BBService
 import com.kgeun.bbcharacterexplorer.viewmodel.BBMainViewModel
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Types
-import dagger.hilt.EntryPoint
-import dagger.hilt.InstallIn
-import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import javax.inject.Inject
-import dagger.hilt.android.testing.HiltAndroidRule
-import org.junit.Rule
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.lang.reflect.Type
-import javax.inject.Singleton
+import javax.inject.Inject
 
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)

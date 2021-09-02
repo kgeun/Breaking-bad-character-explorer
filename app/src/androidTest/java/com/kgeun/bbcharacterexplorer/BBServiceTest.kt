@@ -16,7 +16,6 @@ import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
