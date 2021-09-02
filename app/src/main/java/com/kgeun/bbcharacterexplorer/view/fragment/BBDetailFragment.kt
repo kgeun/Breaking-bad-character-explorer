@@ -18,9 +18,7 @@ import javax.inject.Inject
 class BBDetailFragment : CDGBaseFragment() {
     private lateinit var binding: FragmentDetailBinding
     val mainViewModel: BBMainViewModel by viewModels()
-    @Inject
-    lateinit var mainDao: BBMainDao
-    var breedName: String = ""
+    var charId: Long = 1L
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,60 +27,26 @@ class BBDetailFragment : CDGBaseFragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentDetailBinding.inflate(inflater, container, false)
+        charId = BBCharacterListFragmentArgs.fromBundle(requireArguments()).charId
 
-        setListener()
         subscribeUi()
+        setListener()
 
         return binding.root
     }
 
     private fun subscribeUi() {
-//        mainViewModel.getImageList(breedName).observe(viewLifecycleOwner) {
-//            if (it.isNullOrEmpty()) {
-//                try {
-//                    mainViewModel.viewModelScope.launch {
-//                        mainViewModel.loadImageList(
-//                            breedName,
-//                            CDGUtils.errorHandler(requireContext())
-//                        )
-//                    }
-//                } catch (e: retrofit2.HttpException) {
-//                    Toast.makeText(requireContext(),
-//                        R.string.communication_error,
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                } catch (e: Exception) {
-//                    Toast.makeText(requireContext(),
-//                        R.string.unknown_error,
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//            }
-//            binding.adapter = CDGGalleryAdapter(binding.root as ViewGroup, it)
-//        }
-    }
-
-    private fun setListener() {
-//        breedName = CDGBreedsFragmentArgs.fromBundle(requireArguments()).breedName
-
-        binding.breedsName = breedName
-
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-            CDGAnalytics.sendClick("ClickBack_${javaClass.simpleName}")
+        mainViewModel.getCharacterByCharId(charId).observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.character = it
+            }
         }
     }
 
-    fun refreshImageList() {
-        try {
-//            mainViewModel.viewModelScope.launch {
-//                withContext(Dispatchers.IO) {
-//                    mainDao.deleteImageList(breedName)
-//                }
-//                mainViewModel.loadImageList(breedName, CDGUtils.errorHandler(requireContext()))
-//            }
-        } catch (e: retrofit2.HttpException) {
-            e.printStackTrace()
+    private fun setListener() {
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+            CDGAnalytics.sendClick("ClickBack_${javaClass.simpleName}")
         }
     }
 }

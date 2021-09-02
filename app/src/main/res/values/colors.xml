@@ -2,6 +2,7 @@
 <resources>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
 
     <!-- Teal Series -->
     <color name="primary_teal_1">#00E6CD</color>
@@ -27,6 +28,7 @@
 
 
     <!-- Translucent Achromatic Series -->
+    <color name="basic_black_0.05">#0D292929</color>
     <color name="basic_black_0.5">#80292929</color>
     <color name="basic_black_0.4">#66292929</color>
 

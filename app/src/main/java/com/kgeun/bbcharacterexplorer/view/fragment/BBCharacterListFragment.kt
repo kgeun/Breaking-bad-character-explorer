@@ -1,10 +1,14 @@
 package com.kgeun.bbcharacterexplorer.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.forEach
 import androidx.fragment.app.viewModels
+import com.kgeun.bbcharacterexplorer.constants.CDGConstants
+import com.kgeun.bbcharacterexplorer.data.model.ui.BBSeasonItem
 import com.kgeun.bbcharacterexplorer.data.persistance.BBMainDao
 import com.kgeun.bbcharacterexplorer.databinding.FragmentCharacterListBinding
 import com.kgeun.bbcharacterexplorer.view.CDGBaseFragment
@@ -20,6 +24,13 @@ class BBCharacterListFragment : CDGBaseFragment() {
     val mainViewModel: BBMainViewModel by viewModels()
     @Inject
     lateinit var mainDao: BBMainDao
+    var callback = { item: BBSeasonItem ->
+        mainViewModel.seasonLiveData.postValue(
+            mainViewModel.seasonLiveData.value.also {
+                it?.set(item.season, item)
+            }
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +43,15 @@ class BBCharacterListFragment : CDGBaseFragment() {
         subscribeUi()
         bindUi()
         return binding.root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mainViewModel.searchKeywordLiveData.postValue("")
+        mainViewModel.seasonLiveData.postValue(
+            CDGConstants.seasonItems as HashMap<Int, BBSeasonItem>
+        )
+        binding.charactersList.adapter!!.notifyDataSetChanged()
     }
 
     private fun bindUi() {
@@ -47,13 +67,7 @@ class BBCharacterListFragment : CDGBaseFragment() {
 
         mainViewModel.seasonLiveData.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.seasonAdapter = BBSeasonAdapter(binding.root as ViewGroup, it) { item ->
-                    mainViewModel.seasonLiveData.postValue(
-                        mainViewModel.seasonLiveData.value.also {
-                            it?.set(item.season, item)
-                        }
-                    )
-                }
+                binding.seasonAdapter = BBSeasonAdapter(binding.root as ViewGroup, it, callback)
             }
         }
     }

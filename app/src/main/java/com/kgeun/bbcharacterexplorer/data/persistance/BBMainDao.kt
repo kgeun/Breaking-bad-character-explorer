@@ -16,20 +16,14 @@ interface BBMainDao {
     @Query("SELECT * FROM character ORDER BY char_id ASC")
     fun getCharactersListSync(): List<BBCharacter>?
 
-    @Query("SELECT * FROM character WHERE name LIKE '%' || :keyword  || '%' ORDER BY char_id ASC")
-    fun findCharactersListByKeyword(keyword: String): LiveData<List<BBCharacter>?>
+    @Query("SELECT * FROM character WHERE char_ID = :charId LIMIT 1")
+    fun getCharacterByCharId(charId: Long): LiveData<BBCharacter?>
 
     @Query("SELECT * FROM character WHERE name LIKE '%' || :keyword  || '%' ORDER BY char_id ASC")
     fun findCharactersListByKeywordSync(keyword: String): List<BBCharacter>?
 
-    @Query("SELECT * FROM character WHERE appearance LIKE :seasonList ORDER BY char_id ASC")
-    fun findCharactersListBySeasonList(seasonList: String): LiveData<List<BBCharacter>?>
-
     @RawQuery
     fun findCharactersListBySeasonListSync(query: SupportSQLiteQuery): List<BBCharacter>?
-
-    @Query("SELECT * FROM character WHERE name LIKE :keyword AND appearance LIKE :seasonList ORDER BY char_id ASC")
-    fun findCharactersListByKeywordAndSeasonList(keyword: String, seasonList: String): LiveData<List<BBCharacter>?>
 
     @RawQuery
     fun findCharactersListByKeywordAndSeasonListSync(query: SupportSQLiteQuery): List<BBCharacter>?

@@ -9,15 +9,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.kgeun.bbcharacterexplorer.analytics.CDGAnalytics
 
-
 object CDGViewBinding {
-    @JvmStatic
-    @BindingAdapter("setDrawableId")
-    fun loadImageDrawable(view: ImageView, drawableId: Int) {
-        Glide.with(view.context)
-            .load(drawableId)
-            .into(view)
-    }
 
     @JvmStatic
     @BindingAdapter("setThumbnailUrl")
@@ -29,6 +21,42 @@ object CDGViewBinding {
         Glide.with(view.context)
             .load(url)
             .into(view)
+    }
+
+    @JvmStatic
+    @BindingAdapter("textList")
+    fun setTextList(view: TextView, list: List<String>?) {
+        if (list == null) {
+            return
+        }
+
+        var text = ""
+
+        list.forEachIndexed { index, it ->
+            text += it
+            if (index < list.size - 1) {
+                text += "\n"
+            }
+        }
+        text.trim()
+        view.text = text
+    }
+
+    @JvmStatic
+    @BindingAdapter("intList")
+    fun setIntList(view: TextView, list: List<Int>?) {
+        if (list == null) {
+            return
+        }
+
+        var text = ""
+
+        list.forEach {
+            text += it
+            text += " "
+        }
+        text.trim()
+        view.text = text
     }
 
     @JvmStatic
@@ -47,8 +75,8 @@ object CDGViewBinding {
 
     @JvmStatic
     @BindingAdapter("setClickInfo")
-    fun setClickInfo(view: View, breedName: String?) {
-        if (breedName == null) {
+    fun setClickInfo(view: View, name: String?) {
+        if (name == null) {
             return
         }
 
@@ -56,11 +84,9 @@ object CDGViewBinding {
             view.context.startActivity(
                 Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("https://en.wikipedia.org/w/index.php?search=$breedName")
+                    Uri.parse("https://breakingbad.fandom.com/wiki/$name")
                 )
             )
-
-            CDGAnalytics.sendClick("ClickBreedInfo_$breedName")
         }
     }
 }

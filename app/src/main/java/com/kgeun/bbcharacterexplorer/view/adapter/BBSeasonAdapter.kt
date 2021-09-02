@@ -38,7 +38,6 @@ class BBSeasonAdapter(val parentView: ViewGroup, val seasonList: HashMap<Int, BB
                             !item.selected
                         )
                     )
-                    CDGAnalytics.sendClick("ClickSeason_${javaClass.simpleName}")
                 }
                 executePendingBindings()
             }

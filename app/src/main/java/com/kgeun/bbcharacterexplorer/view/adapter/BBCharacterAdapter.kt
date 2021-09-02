@@ -44,7 +44,6 @@ class BBCharacterAdapter(val parentView: ViewGroup, val characterList: List<BBCh
                         .navigate(
                             BBCharacterListFragmentDirections.listToDetail(item.char_id), navBuilder.build()
                         )
-                    CDGAnalytics.sendClick("CharacterList_${item.name}_${javaClass.simpleName}")
                 }
                 executePendingBindings()
             }
