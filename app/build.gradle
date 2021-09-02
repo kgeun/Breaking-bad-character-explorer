@@ -18,7 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
         testApplicationId "com.kgeun.bbcharacterexplorer.test"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.kgeun.bbcharacterexplorer.BBTestRunner"
 
     }
 
@@ -139,9 +139,13 @@ dependencies {
 
     // Hilt Testing
     androidTestImplementation 'com.google.dagger:hilt-android-testing:2.38.1'
-    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.38.1'
+    kaptAndroidTest 'com.google.dagger:hilt-android-testing:2.38.1'
     testImplementation 'com.google.dagger:hilt-android-testing:2.38.1'
+
+    kaptTest 'com.google.dagger:hilt-android-compiler:2.38.1'
     kaptTest 'com.google.dagger:hilt-compiler:2.38.1'
+    testAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.38.1'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.38.1'
 
     // Room
     implementation "androidx.room:room-runtime:2.3.0"
