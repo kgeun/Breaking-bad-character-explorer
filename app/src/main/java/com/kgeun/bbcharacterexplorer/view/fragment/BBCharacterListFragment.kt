@@ -47,7 +47,6 @@ class BBCharacterListFragment : BBBaseFragment() {
         super.onPause()
         mainViewModel.searchKeywordLiveData.postValue("")
         mainViewModel.seasonLiveData.value = BBConstants.seasonItems.also{ it.map { it.value.selected = false } }
-        binding.seasonsList.invalidate()
     }
 
     private fun bindUi() {
@@ -63,7 +62,11 @@ class BBCharacterListFragment : BBBaseFragment() {
 
         mainViewModel.seasonLiveData.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.seasonAdapter = BBSeasonAdapter(binding.root as ViewGroup, it, callback)
+                if (binding.seasonAdapter == null) {
+                    binding.seasonAdapter = BBSeasonAdapter(binding.root as ViewGroup, it, callback)
+                } else {
+                    binding.seasonAdapter!!.notifyDataSetChanged()
+                }
             }
         }
     }

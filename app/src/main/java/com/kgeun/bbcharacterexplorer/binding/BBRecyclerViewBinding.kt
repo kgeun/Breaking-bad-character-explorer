@@ -12,6 +12,5 @@ object BBRecyclerViewBinding {
         }
 
         view.adapter = adapter
-        view.adapter!!.notifyDataSetChanged()
     }
 }
